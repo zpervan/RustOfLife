@@ -6,3 +6,4 @@ authors = ["Zvonimir Pervan <z.pervan65@gmail.com>"]
 
 [dependencies]
 bevy = "0.10.1"
+wasm-bindgen = "0.2.86"

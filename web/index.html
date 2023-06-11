@@ -1,0 +1,27 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            background: linear-gradient(
+                    135deg,
+                    white 0%,
+                    white 46%,
+                    black 46%,
+                    black 54%,
+                    white 54%,
+                    white 100%
+            );
+            background-repeat: repeat;
+            background-size: 20px 20px;
+        }
+        canvas {
+            background-color: white;
+        }
+    </style>
+</head>
+<script type="module">
+    import init from './wasm/game_of_life.js'
+    init()
+</script>
+</html>
