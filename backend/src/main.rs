@@ -1,22 +1,14 @@
-use bevy::{prelude::*, sprite::MaterialMesh2dBundle};
+use bevy::prelude::*;
+
+use crate::core::*;
+use crate::gui::*;
+
+mod core;
+mod gui;
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
-        .add_startup_system(setup)
+        .add_plugins(bootstrap::setup_plugins())
+        .add_startup_system(startup_screen::initialize)
         .run();
-}
-
-fn setup(
-    mut commands: Commands,
-    mut meshes: ResMut<Assets<Mesh>>,
-    mut materials: ResMut<Assets<ColorMaterial>>,
-) {
-    commands.spawn(Camera2dBundle::default());
-    commands.spawn(MaterialMesh2dBundle {
-        mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
-        transform: Transform::default().with_scale(Vec3::splat(128.)),
-        material: materials.add(ColorMaterial::from(Color::RED)),
-        ..default()
-    });
 }
