@@ -13,8 +13,8 @@ pub fn get_font_path(font_type: String) -> String {
     let mut relative_font_path = String::from(FONT_ASSET_PATH);
     relative_font_path.push_str(font_type.as_str());
 
-    let mut root_path = get_root_path();
-    let mut full_path = root_path.parent().unwrap().join(relative_font_path);
+    let root_path = get_root_path();
+    let full_path = root_path.parent().unwrap().join(relative_font_path);
 
     debug!("Font asset path: {}", full_path.display());
 

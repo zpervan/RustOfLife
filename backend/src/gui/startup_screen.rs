@@ -1,15 +1,12 @@
 use bevy::prelude::*;
-use bevy::sprite::MaterialMesh2dBundle;
 
-use crate::gui::components::button::Button;
+use crate::gui::components::button::*;
 use crate::gui::components::constants::*;
 
 pub fn initialize(mut commands: Commands, asset_server: Res<AssetServer>) {
     info!("Starting application");
 
     commands.spawn(Camera2dBundle::default());
-
-    let start_button = Button::new("Start".to_string(), &asset_server);
 
     commands
         .spawn(NodeBundle {
@@ -23,7 +20,32 @@ pub fn initialize(mut commands: Commands, asset_server: Res<AssetServer>) {
         })
         .with_children(|parent| {
             parent
-                .spawn(start_button.button_ui)
-                .with_children(|parent| { parent.spawn(start_button.button_text); });
+                .spawn(ButtonBundle {
+                    style: default_button_style(),
+                    ..default()
+                })
+                .with_children(|parent| {
+                    parent.spawn(button_text("START".to_string(), asset_server));
+                });
         });
+}
+
+pub fn update(
+    mut interaction_query: Query<(&Interaction, &mut BackgroundColor), (Changed<Interaction>, With<Button>)>
+) {
+    for (interaction, mut color) in &mut interaction_query {
+        match *interaction {
+            Interaction::Clicked => {
+                *color = BUTTON_PRESSED_COLOR.into();
+            }
+
+            Interaction::Hovered => {
+                *color = BUTTON_HOVERED_COLOR.into();
+            }
+
+            Interaction::None => {
+                *color = BUTTON_NORMAL_COLOR.into();
+            }
+        }
+    }
 }
