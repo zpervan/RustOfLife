@@ -12,7 +12,7 @@ pub fn initialize(mut commands: Commands, asset_server: Res<AssetServer>) {
         .spawn(NodeBundle {
             style: Style {
                 size: Size::width(Val::Percent(100.0)),
-                align_items: AlignItems::Center,
+                align_items: AlignItems::End,
                 justify_content: JustifyContent::Center,
                 ..default()
             },

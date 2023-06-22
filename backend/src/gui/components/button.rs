@@ -17,6 +17,6 @@ pub fn button_text(text: String, asset_server: Res<AssetServer>) -> TextBundle {
     TextBundle::from_section(text, TextStyle {
         font: asset_server.load(get_font_path("SpaceMonoNerdFont-Regular.ttf".to_string())),
         font_size: 40.0,
-        color: BUTTON_NORMAL_COLOR,
+        color: BUTTON_TEXT_NORMAL_COLOR,
     })
 }
